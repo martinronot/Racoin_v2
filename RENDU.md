@@ -75,6 +75,9 @@
   - `Annonceur.php` : Ajout des fillable et typage des relations
   - `Categorie.php` : Ajout des fillable et relation avec SousCategorie
   - `SousCategorie.php` : Ajout des fillable et relations bidirectionnelles
+  - `Photo.php` : Ajout des fillable et relation avec Annonce
+  - `Region.php` : Ajout des fillable et relation avec Departements
+  - `Departement.php` : Ajout des fillable et relations bidirectionnelles
 - Création des tests unitaires correspondants :
   - Tests de structure (table, clé primaire, timestamps)
   - Tests des attributs fillable
@@ -85,14 +88,67 @@
   - Documentation PHPDoc
   - Relations typées avec Eloquent
 
+#### 3.5 Migration vers Slim 4
+- Configuration de base :
+  - Mise en place du conteneur DI (PHP-DI)
+  - Configuration des middlewares
+  - Séparation des routes dans des fichiers dédiés
+- Structure modernisée :
+  - `/src/Config` : Configuration de l'application
+  - `/src/Controller` : Contrôleurs avec injection de dépendances
+  - `/src/Middleware` : Middlewares personnalisés
+  - `/src/Service` : Services métier
+- Contrôleurs :
+  - Création d'un `AbstractController` avec fonctionnalités communes
+  - Migration du contrôleur `AnnonceController` avec bonnes pratiques
+  - Support API/Web avec négociation de contenu
+- Templates :
+  - Modernisation des templates Twig
+  - Utilisation de Bootstrap 5
+  - Support des carrousels d'images
+  - Amélioration de la navigation
+
 ## À faire
 - [x] Analyse initiale du projet
 - [x] Configuration initiale des tests
 - [x] Migration des modèles principaux
-- [ ] Migration des modèles restants (Photo, Region, Departement)
+- [x] Migration des modèles restants (Photo, Region, Departement)
+- [x] Configuration de base Slim 4
+- [ ] Migration des contrôleurs restants
 - [ ] Réorganisation de l'architecture
+  - [x] Mise en place d'un conteneur DI (PHP-DI)
+  - [x] Configuration des middlewares Slim
+  - [x] Séparation des routes dans des fichiers dédiés
+  - [ ] Implémentation des services
 - [ ] Migration Slim 4
+  - [x] Configuration du routage PSR-7
+  - [ ] Migration des contrôleurs restants
+  - [x] Intégration de Twig 3
 - [ ] Modernisation PHP 8
+  - [ ] Utilisation des attributs pour les routes
+  - [ ] Promotion des propriétés des constructeurs
+  - [ ] Types unions et nullables
 - [ ] Réfactorisation du code
+  - [ ] Mise en place des services
+  - [ ] Implémentation des repositories
+  - [ ] Validation des données (Request/Response)
 - [ ] Système de logs
+  - [x] Configuration de base de Monolog
+  - [ ] Logs des requêtes HTTP
+  - [ ] Logs des erreurs et exceptions
 - [ ] Documentation OpenAPI
+  - [ ] Documentation des endpoints
+  - [ ] Schémas des modèles
+  - [ ] Exemples de requêtes/réponses
+- [ ] Sécurité
+  - [ ] Validation des entrées
+  - [ ] Protection CSRF
+  - [ ] Authentification API
+- [ ] Tests
+  - [ ] Tests d'intégration des contrôleurs
+  - [ ] Tests des services
+  - [ ] Tests de bout en bout
+- [ ] Optimisation
+  - [ ] Cache des requêtes
+  - [ ] Cache des vues Twig
+  - [ ] Optimisation des requêtes SQL

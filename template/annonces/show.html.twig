@@ -1,0 +1,81 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ annonce.titre }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="/annonces">Annonces</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ annonce.titre }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h1>{{ annonce.titre }}</h1>
+            
+            {% if annonce.photos|length > 0 %}
+                <div id="carouselPhotos" class="carousel slide mb-4" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for photo in annonce.photos %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <img src="{{ photo.url }}" class="d-block w-100" alt="{{ annonce.titre }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% if annonce.photos|length > 1 %}
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPhotos" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Précédent</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselPhotos" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Suivant</span>
+                        </button>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Description</h5>
+                    <p class="card-text">{{ annonce.description|nl2br }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Prix</h5>
+                    <p class="card-text display-4">{{ annonce.prix }} €</p>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Contact</h5>
+                    <p class="card-text">
+                        <strong>{{ annonce.annonceur.nom }}</strong><br>
+                        <i class="bi bi-telephone"></i> {{ annonce.annonceur.telephone }}<br>
+                        <i class="bi bi-envelope"></i> {{ annonce.annonceur.email }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Informations</h5>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            Publiée le {{ annonce.date_publication|date('d/m/Y') }}
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
